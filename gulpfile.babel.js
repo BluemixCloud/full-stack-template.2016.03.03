@@ -18,7 +18,9 @@ const paths = {
 // ************************************************************************** //
 // ************************************************************************** //
 
-gulp.task('default', ['client-build', 'server-build', 'watch']);
+gulp.task('default', ['build', 'watch']);
+
+gulp.task('build', ['client-build', 'server-build']);
 
 gulp.task('watch', () => {
   gulp.watch([paths.client_code, paths.client_html, paths.vendor_code], ['client-build']);

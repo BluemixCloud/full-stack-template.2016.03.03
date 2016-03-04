@@ -2,6 +2,8 @@
   "name": "full-stack-template",
   "version": "1.0.0",
   "scripts": {
+    "start": "node .srv",
+    "postinstall": "gulp build",
     "dev": "nodemon .srv -w server --verbose --delay 3",
     "builds": "babel server -d .srv",
     "buildc": "babel client -d .pub"
