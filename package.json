@@ -6,7 +6,8 @@
     "postinstall": "gulp build",
     "dev": "nodemon .srv -w server --verbose --delay 3",
     "builds": "babel server -d .srv",
-    "buildc": "babel client -d .pub"
+    "buildc": "babel client -d .pub",
+    "test": "mocha"
   },
   "author": "Chyld Medford <chyld.medford@gmail.com>",
   "license": "MIT",

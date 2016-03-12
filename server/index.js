@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import multer from 'multer';
 import uuid from 'node-uuid';
-import request from 'request-promise';
+import request from 'request';
 import _ from 'lodash';
 
 const storage = multer.memoryStorage();
