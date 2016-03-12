@@ -5,11 +5,13 @@ import multer from 'multer';
 import uuid from 'node-uuid';
 import request from 'request';
 import _ from 'lodash';
+import util from 'util';
 
 const storage = multer.memoryStorage();
 const uploadr = multer({storage: storage});
 
 const app = express();
+app.use(require('express-chrome-logger'));
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../.pub'));
 app.use(bodyParser.json());
@@ -20,8 +22,12 @@ app.listen(process.env.PORT, process.env.IP, () => {
 });
 
 // -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
 
 app.get('/hello', function(req, res){
+  res.console.log('SERVER: Logging...');
+  res.console.log('SERVER: ' + parse(req.headers));
   res.send('world');
 });
 
@@ -46,6 +52,14 @@ app.all('/proxy', function(req, res){
       res.send({error: e, status: r.statusCode, request: o, response: b});
     });
 });
+
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+
+function parse(obj){
+  return util.inspect(obj, { showHidden: true, depth: null });
+}
 
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
