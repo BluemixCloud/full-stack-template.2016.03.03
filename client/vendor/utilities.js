@@ -1,8 +1,24 @@
-function nodered(scope, url, method, data, cb){
-  $.ajax({
-    url: '/proxy?url=' + url,
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+
+function nodered(scope, url, method, payload, cb){
+  method = method.toLowerCase();
+
+  var o = {
+    url: url,
     method: method,
-    data: data,
+    json: true
+  };
+
+  if(method !== 'get'){
+    o.body = payload;
+  }
+
+  $.ajax({
+    url: '/nodered',
+    method: 'post',
+    data: {payload: JSON.stringify(o)},
     dataType: 'json',
     success: function(response){
       cb(response);
@@ -11,11 +27,15 @@ function nodered(scope, url, method, data, cb){
   });
 }
 
-function express(scope, url, method, data, cb){
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+
+function express(scope, url, method, payload, cb){
   $.ajax({
     url: url,
     method: method,
-    data: data,
+    data: payload,
     dataType: 'json',
     success: function(response){
       cb(response);
@@ -23,3 +43,31 @@ function express(scope, url, method, data, cb){
     }
   });
 }
+
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+
+function openwhisk(scope, org, space, action, payload, cb){
+  var o = {
+    org: org,
+    space: space,
+    action: action,
+    payload: payload
+  };
+
+  $.ajax({
+    url: '/openwhisk',
+    method: 'post',
+    data: {payload: JSON.stringify(o)},
+    dataType: 'json',
+    success: function(response){
+      cb(response);
+      scope.$apply();
+    }
+  });
+}
+
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //

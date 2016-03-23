@@ -1,6 +1,5 @@
-/* global angular */
+/* global angular, nodered, express, openwhisk */
 
 angular.module('template', [])
 .controller('MainCtrl', function($scope){
-  console.log('CLIENT: Logging...');
 });
