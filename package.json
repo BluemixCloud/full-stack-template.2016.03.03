@@ -16,7 +16,8 @@
     "multer": "^1.1.0",
     "node-uuid": "^1.4.7",
     "openwhisk": "^1.0.1",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "twilio": "^2.9.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
